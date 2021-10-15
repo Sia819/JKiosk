@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+
 public class MainWindow extends JFrame
 {
 	// private fields
@@ -24,7 +25,7 @@ public class MainWindow extends JFrame
 		this.setLayout(new BorderLayout());
 		
 		// MainWindow Container
-		c = this.getContentPane();
+		this.c = this.getContentPane();
 		
 		// Make Pages
 		windowPanels.put("home", (JPanel)new HomePanel());
@@ -35,8 +36,8 @@ public class MainWindow extends JFrame
 		pagePanel = windowPanels.get("home"); //가져올 데이터불러오기
 		
 		// Component add
-		c.add(menuPanel, BorderLayout.NORTH);
-		c.add(pagePanel);
+		this.c.add(menuPanel, BorderLayout.NORTH);
+		this.c.add(pagePanel);
 		
 		// Show Window
 		this.setVisible(true);
@@ -47,7 +48,7 @@ public class MainWindow extends JFrame
 	{
 		if (this.windowPanels.containsKey(pageName))
 		{
-			c.remove(pagePanel);
+			c.remove(pagePanel); // if pagePanel is not c, do nothing
 			this.pagePanel = (JPanel)this.windowPanels.get(pageName);
 			c.add(pagePanel);
 			this.revalidate();
@@ -66,9 +67,14 @@ public class MainWindow extends JFrame
 		if (this.windowPanels.containsKey(pageName))
 		{
 			JPanel targetPage = this.windowPanels.get(pageName);
-			
 			Class<? extends JPanel> temp = targetPage.getClass();
-			throw new Exception("Not Implemented!");
+			
+			boolean tempResult = (targetPage.getComponent(0) == c);
+			if (tempResult)
+				c.remove(targetPage); // if pagePanel is not c, do nothing
+			targetPage = temp.getDeclaredConstructor().newInstance();
+			if (tempResult)
+				c.add(targetPage);
 		}
 	}
 	
@@ -81,12 +87,12 @@ public class MainWindow extends JFrame
 		}
 	}
 	
-	// 하단 페지지 패널입니다. 
-	class PagePanel extends JPanel
-	{
-		public PagePanel()
-		{
-			this.setBackground(Color.magenta);			
-		}
-	}
+	//  // 하단 페이지 패널입니다.
+	//  class PagePanel extends JPanel
+	//  {
+	//  	public PagePanel()
+	//  	{
+	//  		this.setBackground(Color.magenta);			
+	//  	}
+	//  }
 }
