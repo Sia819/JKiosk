@@ -16,11 +16,15 @@ public class HomePanel extends JPanel
 	public HomePanel()
 	{
 		self = this;
-		this.setLayout(null);
+		//this.setLayout(null);
 		this.setBackground(Color.white);
 		
-		this.NavigationOrder = new RoundButton("주문하기");
-		NavigationOrder.setBounds(50,50, 200, 200);
+		this.NavigationOrder = new RoundButton("주문하기")
+		{
+			// setLayout(new BorderLayout()); 으로할 때 사이즈가 fixed되는 문제를 수정
+			public Dimension getPreferredSize() { return new Dimension(200, 200); };
+		};
+		NavigationOrder.setBounds(50, 50, 200, 200);
 		NavigationOrder.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		NavigationOrder.addActionListener(new ActionListener()
@@ -33,8 +37,6 @@ public class HomePanel extends JPanel
 			}
 		});
 		
-		this.add(NavigationOrder);
+		this.add(NavigationOrder, BorderLayout.CENTER);
 	}
-	
-	
 }
