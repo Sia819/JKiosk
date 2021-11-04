@@ -5,8 +5,10 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-// ��ٱ���
-public class BasketList extends JPanel  
+import common.*;
+
+// 장바구니
+public class BasketList extends JPanel
 {
 	JLabel listNameLabel;
 	JList<JPanel> myListItems;
@@ -32,4 +34,5 @@ public class BasketList extends JPanel
 		this.setVisible(true);
 		
 	}
+	
 }

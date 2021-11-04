@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="menuPanel"/>
+		<item key="selection" value="CurrentPageName"/>
 		<list key="findhistory">
+			<item value="CurrentPageName"/>
 			<item value="MenuPanel"/>
 			<item value="TopMenuPanel"/>
 			<item value="private static class RoundedBorder implements Border {"/>

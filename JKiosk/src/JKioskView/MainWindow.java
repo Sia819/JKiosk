@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import common.*;
 
 public class MainWindow extends JFrame 
 {
@@ -15,9 +16,14 @@ public class MainWindow extends JFrame
 
 	// 예를들어 다른 클래스에서 객체에 대한 정보를 모르더라도,
 	// String문자로 특정 객체를 지칭할 수 있도록 해시맵에 JPanel을 등록시킴.
-	Map<String, JPanel> windowPanels = new HashMap<String, JPanel>();
+	public Map<String, JPanel> windowPanels = new HashMap<String, JPanel>();
+	public static String CurrentPageName = "";
 
-	public MainWindow() 
+	private static MainWindow instance;
+	
+	// 만약, 싱글톤이 아니라면 하위 클래스에서는 MainWindow a = (MainWindow)(SwingUtilities.getRoot(self));
+	// 이와 같이 복잡한 식으로 인스턴스를 얻어와야 함.
+	private MainWindow()
 	{
 		// Initialize MainWindow Property
 		this.setTitle("JKiosk");
@@ -26,17 +32,23 @@ public class MainWindow extends JFrame
 		this.setLayout(new BorderLayout());
 		//this.setLayout(null);
 		
-
 		// MainWindow Container
 		c = this.getContentPane();
 
 		// Make Pages
-		windowPanels.put("home", (JPanel) new HomePanel());    // 홈화면을 HashMap에 등록시킵니다.
-		windowPanels.put("order", (JPanel) new OrderPanel());  // 주문화면을 HashMap에 등록시킵니다.
+		HomePanel home = new HomePanel();
+		home.setDefaultPriviousPagename("");
+		home.setDefaultPrecedePagename("order");
+		windowPanels.put("home", home);    // 홈화면을 HashMap에 등록시킵니다.
+		OrderPanel order = new OrderPanel();
+		order.setDefaultPriviousPagename("home");
+		order.setDefaultPrecedePagename("");
+		windowPanels.put("order", order);  // 주문화면을 HashMap에 등록시킵니다.
 
 		// Initalize Component
-		menuPanel = new TopMenuPanel();
+		menuPanel = TopMenuPanel.getInstance();
 		pagePanel = windowPanels.get("home"); // String문자로 페이지에 대한 객체를 가져옵니다.
+		CurrentPageName = "home";
 
 		menuPanel.setSize(200, 200);
 		pagePanel.setSize(200, 200);
@@ -48,9 +60,17 @@ public class MainWindow extends JFrame
 		// Show Window
 		this.setVisible(true);
 	}
+	
+	public static MainWindow getInstance() 
+	{
+		if (instance == null)
+			instance = new MainWindow();
+
+		return instance;
+    }
 
 	// 페이지 이름을 패러미터로 입력하면 해당 페이지로 이동합니다.
-	public void NavigatePage(String pageName)// throws Exception
+	public void NavigatePage(String pageName)
 	{
 		if (this.windowPanels.containsKey(pageName)) 
 		{
@@ -59,10 +79,11 @@ public class MainWindow extends JFrame
 			c.add(pagePanel);
 			this.revalidate();
 			this.repaint();
-		} else 
+			CurrentPageName = pageName;
+		}
+		else 
 		{
-			int a = 10;
-			//throw new Exception("해당하는 페이지\"" + pageName + "\"가 존재하지 않습니다.");
+			JOptionPane.showMessageDialog(null, "\"" + pageName + "\" 페이지로 이동하려고 하였지만, 해당되는 페이지가 등록되어있지 않습니다.", "Page Move Error!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

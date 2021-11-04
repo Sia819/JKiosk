@@ -6,8 +6,9 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.border.*;
 import UserControl.*;
+import common.*;
 
-public class HomePanel extends JPanel 
+public class HomePanel extends PagePanel
 {
 	private JButton NavigationOrder;
 	private HomePanel self;
@@ -32,11 +33,11 @@ public class HomePanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				MainWindow a = (MainWindow)(SwingUtilities.getRoot(self));
-				a.NavigatePage("order");
+				MainWindow.getInstance().NavigatePage("order");
 			}
 		});
 		
 		this.add(NavigationOrder, BorderLayout.CENTER);
 	}
+
 }
