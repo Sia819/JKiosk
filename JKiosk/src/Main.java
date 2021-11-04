@@ -8,5 +8,4 @@ public class Main
 
 		MainWindow window1 = new MainWindow();
 	}
-
 }

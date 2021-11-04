@@ -6,7 +6,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-
 public class MainWindow extends JFrame
 {
 	// private fields
@@ -14,6 +13,8 @@ public class MainWindow extends JFrame
 	private JPanel menuPanel;
 	private JPanel pagePanel;
 	
+	// 예를들어 다른 클래스에서 객체에 대한 정보를 모르더라도, 
+	// String문자로 특정 객체를 지칭할 수 있도록 해시맵에 JPanel을 등록시킴.
 	Map<String, JPanel> windowPanels = new HashMap<String, JPanel>();
 	
 	public MainWindow()
@@ -22,22 +23,26 @@ public class MainWindow extends JFrame
 		this.setTitle("JKiosk");
 		this.setSize(600, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(new BorderLayout());
+		//this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		
 		// MainWindow Container
-		this.c = this.getContentPane();
+		c = this.getContentPane();
 		
 		// Make Pages
-		windowPanels.put("home", (JPanel)new HomePanel());
-		windowPanels.put("order", (JPanel)new OrderPanel());
+		windowPanels.put("home", (JPanel)new HomePanel());    // 홈화면을 HashMap에 등록시킵니다.
+		windowPanels.put("order", (JPanel)new OrderPanel());  // 주문화면을 HashMap에 등록시킵니다.
 		
 		// Initalize Component
 		menuPanel = new MenuPanel();
-		pagePanel = windowPanels.get("home"); //가져올 데이터불러오기
+		pagePanel = windowPanels.get("home"); // String문자로 페이지에 대한 객체를 가져옵니다.
 		
+		menuPanel.setSize(200,200);
+		pagePanel.setSize(200,200);
+		// TODO : 레이아웃을 지정했을 때 사이즈 지정하기
 		// Component add
-		this.c.add(menuPanel, BorderLayout.NORTH);
-		this.c.add(pagePanel);
+		c.add(menuPanel, BorderLayout.NORTH);
+		c.add(pagePanel);
 		
 		// Show Window
 		this.setVisible(true);
