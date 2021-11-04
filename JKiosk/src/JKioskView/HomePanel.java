@@ -40,4 +40,5 @@ public class HomePanel extends PagePanel
 		this.add(NavigationOrder, BorderLayout.CENTER);
 	}
 
+
 }

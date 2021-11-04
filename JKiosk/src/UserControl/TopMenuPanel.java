@@ -1,4 +1,4 @@
-package JKioskView;
+package UserControl;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import JKioskView.*;
 import common.*;
 
 //상단 메뉴 패널입니다.

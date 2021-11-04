@@ -5,25 +5,33 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import UserControl.BasketList;
 import common.*;
 
 // 주문 페이지
 public class OrderPanel extends PagePanel
 {
 	private JButton JButton1;
-	private BasketList myList;
+	private BasketList myBasket;
 
 	
 	public OrderPanel()
 	{
-		this.setBackground(Color.green);
-		this.setLayout(new GridLayout(1, 2));
+		GridBagLayout gbl = new GridBagLayout();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        setLayout(gbl);
 		
 		this.JButton1 = new JButton("test");
-		this.myList = new BasketList();
+		this.myBasket = new BasketList();
+		myBasket.setMaximumSize(new Dimension(1000, 200));
 		
-		this.add(JButton1);
-		this.add(myList);
+		LayoutExtension.addGridBag(this, JButton1, gbl, gbc, 0, 0, 1, 0, 1, 1);
+		LayoutExtension.addGridBag(this, myBasket, gbl, gbc, 1, 0, 1, 1, 0, 1);
+
 	}
+	
+	
+	
 
 }

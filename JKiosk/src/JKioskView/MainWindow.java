@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+
+import UserControl.TopMenuPanel;
 import common.*;
 
 public class MainWindow extends JFrame 
@@ -27,7 +29,7 @@ public class MainWindow extends JFrame
 	{
 		// Initialize MainWindow Property
 		this.setTitle("JKiosk");
-		this.setSize(600, 500);
+		this.setSize(1600, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		//this.setLayout(null);
@@ -40,11 +42,23 @@ public class MainWindow extends JFrame
 		home.setDefaultPriviousPagename("");
 		home.setDefaultPrecedePagename("order");
 		windowPanels.put("home", home);    // 홈화면을 HashMap에 등록시킵니다.
+		
 		OrderPanel order = new OrderPanel();
 		order.setDefaultPriviousPagename("home");
-		order.setDefaultPrecedePagename("");
+		order.setDefaultPrecedePagename("pay");
 		windowPanels.put("order", order);  // 주문화면을 HashMap에 등록시킵니다.
+		
+		PayPanel pay = new PayPanel();
+		pay.setDefaultPriviousPagename("order");
+		pay.setDefaultPrecedePagename("");
+		windowPanels.put("pay", pay);  // 주문화면을 HashMap에 등록시킵니다.
+		
+		FinishedPanel finish = new FinishedPanel();
+		finish.setDefaultPriviousPagename("");
+		finish.setDefaultPrecedePagename("home");
+		windowPanels.put("finish", finish);  // 주문화면을 HashMap에 등록시킵니다.
 
+		
 		// Initalize Component
 		menuPanel = TopMenuPanel.getInstance();
 		pagePanel = windowPanels.get("home"); // String문자로 페이지에 대한 객체를 가져옵니다.
