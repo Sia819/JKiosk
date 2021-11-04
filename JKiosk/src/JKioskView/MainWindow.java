@@ -24,7 +24,7 @@ public class MainWindow extends JFrame
 		this.setSize(600, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setLayout(new BorderLayout());
-		this.setLayout(null);
+		//this.setLayout(null);
 		
 		// MainWindow Container
 		c = this.getContentPane();
@@ -34,7 +34,7 @@ public class MainWindow extends JFrame
 		windowPanels.put("order", (JPanel)new OrderPanel());  // 주문화면을 HashMap에 등록시킵니다.
 		
 		// Initalize Component
-		menuPanel = new MenuPanel();
+		menuPanel = new TopMenuPanel();
 		pagePanel = windowPanels.get("home"); // String문자로 페이지에 대한 객체를 가져옵니다.
 		
 		menuPanel.setSize(200,200);
@@ -83,14 +83,7 @@ public class MainWindow extends JFrame
 		}
 	}
 	
-	// 상단 메뉴 패널입니다.
-	class MenuPanel extends JPanel
-	{
-		public MenuPanel()
-		{
-			this.setBackground(Color.cyan);
-		}
-	}
+	
 	
 	//  // 하단 페이지 패널입니다.
 	//  class PagePanel extends JPanel
