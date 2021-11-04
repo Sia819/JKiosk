@@ -19,9 +19,9 @@ public class HomePanel extends JPanel
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		
-		this.NavigationOrder = new RoundButton("ÁÖ¹®ÇÏ±â");
+		this.NavigationOrder = new RoundButton("ì£¼ë¬¸í•˜ê¸°");
 		NavigationOrder.setBounds(50,50, 200, 200);
-		NavigationOrder.setFont(new Font("µ¸¿ò", Font.BOLD, 20));
+		NavigationOrder.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 20));
 		
 		NavigationOrder.addActionListener(new ActionListener()
 		{

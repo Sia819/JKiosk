@@ -3,7 +3,7 @@ package JKioskView;
 import java.awt.*;
 import javax.swing.*;
 
-//»ó´Ü ¸Ş´º ÆĞ³ÎÀÔ´Ï´Ù.
+//ìƒë‹¨ ë©”ë‰´ íŒ¨ë„ì…ë‹ˆë‹¤.
 public class TopMenuPanel extends JPanel
 {
 	JButton back;
@@ -16,13 +16,13 @@ public class TopMenuPanel extends JPanel
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		ImageIcon icon = new ImageIcon("src/image/backArrow.png");
-		Image changeImg = icon.getImage().getScaledInstance(70, 40, Image.SCALE_SMOOTH); // ¹öÆ°ÀÇ ÀÌ¹ÌÁö Å©±âÁ¶Á¤
+		Image changeImg = icon.getImage().getScaledInstance(70, 40, Image.SCALE_SMOOTH); // ë²„íŠ¼ì˜ ì´ë¯¸ì§€ í¬ê¸°ì¡°ì •
 		icon = new ImageIcon(changeImg);
 		back = new JButton(icon);
-		back.setBorder(BorderFactory.createEmptyBorder()); // ¹öÆ°ÀÇ º¸´õ¸¦ Á¦°Å
+		back.setBorder(BorderFactory.createEmptyBorder()); // ë²„íŠ¼ì˜ ë³´ë”ë¥¼ ì œê±°
 		back.setSize(100,50);
 		
-		title = new JLabel("¸Ş´ºÀÌ¸§");
+		title = new JLabel("ë©”ë‰´ì´ë¦„");
 		
 		this.add(back);
 		this.add(title);

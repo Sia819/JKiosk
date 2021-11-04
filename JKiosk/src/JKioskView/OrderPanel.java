@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-// ÁÖ¹®ÆÐ³Î
+// ï¿½Ö¹ï¿½ï¿½Ð³ï¿½
 public class OrderPanel extends JPanel 
 {
 	private JButton JButton1;
@@ -16,7 +16,7 @@ public class OrderPanel extends JPanel
 		this.setBackground(Color.green);
 		this.setLayout(new GridLayout(1, 2));
 		
-		this.JButton1 = new JButton("¾È³çÇÏ¼¼¿ä");
+		this.JButton1 = new JButton("test");
 		this.myList = new BasketList();
 		
 		this.add(JButton1);

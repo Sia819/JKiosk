@@ -5,7 +5,7 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-// Àå¹Ù±¸´Ï
+// ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
 public class BasketList extends JPanel  
 {
 	JLabel listNameLabel;
@@ -19,10 +19,10 @@ public class BasketList extends JPanel
 		
 		this.setLayout(new BorderLayout());
 		
-		listNameLabel = new JLabel("Àå¹Ù±¸´Ï ¸ñ·Ï");
+		listNameLabel = new JLabel("ì¥ë°”êµ¬ë‹ˆ ëª©ë¡");
 		myListItems = new JList<JPanel>(); 
-		basketPriceLabel = new JLabel("ÇÕ°è :       ¿ø");
-		getPayButton = new JButton("ÁÖ¹®ÇÏ±â");
+		basketPriceLabel = new JLabel("í•©ê³„ :       ì›");
+		getPayButton = new JButton("ì£¼ë¬¸í•˜ê¸°");
 		
 		this.add(listNameLabel);
 		this.add(myListItems);

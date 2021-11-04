@@ -6,74 +6,74 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class MainWindow extends JFrame
+public class MainWindow extends JFrame 
 {
 	// private fields
 	private Container c;
 	private JPanel menuPanel;
 	private JPanel pagePanel;
-	
-	// ¿¹¸¦µé¾î ´Ù¸¥ Å¬·¡½º¿¡¼­ °´Ã¼¿¡ ´ëÇÑ Á¤º¸¸¦ ¸ğ¸£´õ¶óµµ, 
-	// String¹®ÀÚ·Î Æ¯Á¤ °´Ã¼¸¦ ÁöÄªÇÒ ¼ö ÀÖµµ·Ï ÇØ½Ã¸Ê¿¡ JPanelÀ» µî·Ï½ÃÅ´.
+
+	// ì˜ˆë¥¼ë“¤ì–´ ë‹¤ë¥¸ í´ë˜ìŠ¤ì—ì„œ ê°ì²´ì— ëŒ€í•œ ì •ë³´ë¥¼ ëª¨ë¥´ë”ë¼ë„,
+	// Stringë¬¸ìë¡œ íŠ¹ì • ê°ì²´ë¥¼ ì§€ì¹­í•  ìˆ˜ ìˆë„ë¡ í•´ì‹œë§µì— JPanelì„ ë“±ë¡ì‹œí‚´.
 	Map<String, JPanel> windowPanels = new HashMap<String, JPanel>();
-	
-	public MainWindow()
+
+	public MainWindow() 
 	{
 		// Initialize MainWindow Property
 		this.setTitle("JKiosk");
 		this.setSize(600, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		//this.setLayout(null);
 		
+
 		// MainWindow Container
 		c = this.getContentPane();
-		
+
 		// Make Pages
-		windowPanels.put("home", (JPanel)new HomePanel());    // È¨È­¸éÀ» HashMap¿¡ µî·Ï½ÃÅµ´Ï´Ù.
-		windowPanels.put("order", (JPanel)new OrderPanel());  // ÁÖ¹®È­¸éÀ» HashMap¿¡ µî·Ï½ÃÅµ´Ï´Ù.
-		
+		windowPanels.put("home", (JPanel) new HomePanel());    // í™ˆí™”ë©´ì„ HashMapì— ë“±ë¡ì‹œí‚µë‹ˆë‹¤.
+		windowPanels.put("order", (JPanel) new OrderPanel());  // ì£¼ë¬¸í™”ë©´ì„ HashMapì— ë“±ë¡ì‹œí‚µë‹ˆë‹¤.
+
 		// Initalize Component
 		menuPanel = new TopMenuPanel();
-		pagePanel = windowPanels.get("home"); // String¹®ÀÚ·Î ÆäÀÌÁö¿¡ ´ëÇÑ °´Ã¼¸¦ °¡Á®¿É´Ï´Ù.
-		
-		menuPanel.setSize(200,200);
-		pagePanel.setSize(200,200);
-		// TODO : ·¹ÀÌ¾Æ¿ôÀ» ÁöÁ¤ÇßÀ» ¶§ »çÀÌÁî ÁöÁ¤ÇÏ±â
+		pagePanel = windowPanels.get("home"); // Stringë¬¸ìë¡œ í˜ì´ì§€ì— ëŒ€í•œ ê°ì²´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+
+		menuPanel.setSize(200, 200);
+		pagePanel.setSize(200, 200);
+		// TODO : ë ˆì´ì•„ì›ƒì„ ì§€ì •í–ˆì„ ë•Œ ì‚¬ì´ì¦ˆ ì§€ì •í•˜ê¸°
 		// Component add
 		c.add(menuPanel, BorderLayout.NORTH);
 		c.add(pagePanel);
-		
+
 		// Show Window
 		this.setVisible(true);
 	}
-	
-	// ÆäÀÌÁö ÀÌ¸§À» ÆĞ·¯¹ÌÅÍ·Î ÀÔ·ÂÇÏ¸é ÇØ´ç ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.
+
+	// í˜ì´ì§€ ì´ë¦„ì„ íŒ¨ëŸ¬ë¯¸í„°ë¡œ ì…ë ¥í•˜ë©´ í•´ë‹¹ í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.
 	public void NavigatePage(String pageName)// throws Exception
 	{
-		if (this.windowPanels.containsKey(pageName))
+		if (this.windowPanels.containsKey(pageName)) 
 		{
 			c.remove(pagePanel); // if pagePanel is not c, do nothing
-			this.pagePanel = (JPanel)this.windowPanels.get(pageName);
+			this.pagePanel = (JPanel) this.windowPanels.get(pageName);
 			c.add(pagePanel);
 			this.revalidate();
 			this.repaint();
-		}
-		else
+		} else 
 		{
 			int a = 10;
-			//throw new Exception("ÇØ´çÇÏ´Â ÆäÀÌÁö\"" + pageName + "\"°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			//throw new Exception("í•´ë‹¹í•˜ëŠ” í˜ì´ì§€\"" + pageName + "\"ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 	}
-	
-	// TODO : ÆäÀÌÁö ÀÎ½ºÅÏ½º ¿¬°áÀ» ÇØÁ¦ÇÏ°í, »õ ÆäÀÌÁö ÀÎ½ºÅÏ½º¸¦ µî·Ï½ÃÅµ´Ï´Ù.
-	public void ResetPage(String pageName) throws Exception
+
+	// TODO : í˜ì´ì§€ ì¸ìŠ¤í„´ìŠ¤ ì—°ê²°ì„ í•´ì œí•˜ê³ , ìƒˆ í˜ì´ì§€ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë“±ë¡ì‹œí‚µë‹ˆë‹¤.
+	public void ResetPage(String pageName) throws Exception 
 	{
-		if (this.windowPanels.containsKey(pageName))
+		if (this.windowPanels.containsKey(pageName)) 
 		{
 			JPanel targetPage = this.windowPanels.get(pageName);
 			Class<? extends JPanel> temp = targetPage.getClass();
-			
+
 			boolean tempResult = (targetPage.getComponent(0) == c);
 			if (tempResult)
 				c.remove(targetPage); // if pagePanel is not c, do nothing
@@ -82,15 +82,4 @@ public class MainWindow extends JFrame
 				c.add(targetPage);
 		}
 	}
-	
-	
-	
-	//  // ÇÏ´Ü ÆäÀÌÁö ÆĞ³ÎÀÔ´Ï´Ù.
-	//  class PagePanel extends JPanel
-	//  {
-	//  	public PagePanel()
-	//  	{
-	//  		this.setBackground(Color.magenta);			
-	//  	}
-	//  }
 }
