@@ -32,9 +32,9 @@ public class BasketList extends JPanel
         gbc.fill = GridBagConstraints.BOTH;
         setLayout(gbl);
 		
-		listNameLabel = new JLabel("장바구니 목록");
-		//myListItems = new JList<JPanel>(v);
-		
+		listNameLabel = new JLabel("장바구니 목록")
+		{ public Dimension getPreferredSize() { return new Dimension(80, 80); }; };
+
 		// TODO 실제로 정상적으로 표기되지 않음
 		// 이 구조는 추후에
 		// JList custom renderer를 통해
@@ -44,8 +44,8 @@ public class BasketList extends JPanel
 		v.add(new BasketItem("b"));
 		v.add(new BasketItem("c"));
 		
-		basketPriceLabel = new JLabel("합계 :       원");
-		getPayButton = new JButton("주문하기");
+		basketPriceLabel = new JLabel("합계 :       원") { public Dimension getPreferredSize() { return new Dimension(80, 80); }; };
+		getPayButton = new JButton("주문하기") { public Dimension getPreferredSize() { return new Dimension(100, 100); }; };
 		getPayButton.setSize(0, 200);
 		//getPayButton.setMinimumSize((new Dimension(100, 100)));
 		getPayButton.addActionListener(new ActionListener()
@@ -57,9 +57,9 @@ public class BasketList extends JPanel
 			}
 		});
 		
-		listNameLabel.setMinimumSize(new Dimension(0, 60));
-		basketPriceLabel.setMinimumSize(new Dimension(0, 60));
-		getPayButton.setMinimumSize(new Dimension(0, 60));
+		listNameLabel.setMinimumSize(new Dimension(100, 100));
+		basketPriceLabel.setMinimumSize(new Dimension(100, 100));
+		getPayButton.setMinimumSize(new Dimension(100, 100));
 		
 	
 		LayoutExtension.addGridBag(this, listNameLabel, gbl, gbc, 

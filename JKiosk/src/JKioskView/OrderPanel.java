@@ -23,8 +23,7 @@ public class OrderPanel extends PagePanel
         setLayout(gbl);
 		
 		this.JButton1 = new JButton("test");
-		this.myBasket = new BasketList();
-		myBasket.setMaximumSize(new Dimension(1000, 200));
+		this.myBasket = new BasketList() { public Dimension getPreferredSize() { return new Dimension(400, 400); }; };
 		
 		LayoutExtension.addGridBag(this, JButton1, gbl, gbc, 0, 0, 1, 0, 1, 1);
 		LayoutExtension.addGridBag(this, myBasket, gbl, gbc, 1, 0, 1, 1, 0, 1);

@@ -9,13 +9,15 @@ public class GridBagLayoutSample extends JFrame
             new GridBagLayoutSample("GridBagLayout Sample");
       }
      
-      public GridBagLayoutSample(String str){
+      public GridBagLayoutSample(String str)
+      {
             super(str);
+            
            
             setDefaultCloseOperation(EXIT_ON_CLOSE);
            
             JButton btn1 = new JButton("One");
-            JButton btn2 = new JButton("Two");
+            JButton btn2 = new JButton("Two") { public Dimension getPreferredSize() { return new Dimension(100, 100); }; };
             JButton btn3 = new JButton("Three");
             JButton btn4 = new JButton("Four");
             JButton btn5 = new JButton("Five");
@@ -27,12 +29,15 @@ public class GridBagLayoutSample extends JFrame
             gbc.fill = GridBagConstraints.BOTH;
             setLayout(gbl);
            
+            //btn2.setMaximumSize(new Dimension(100, 100));
+            
+            
             //addGrid(gbl, gbc, btn1, 0, 0, 1, 1, 0, 0);
             //addGrid(gbl, gbc, btn2, 1, 0, 1, 1, 1, 0);
             //addGrid(gbl, gbc, btn3, 2, 0, 1, 1, 0, 0);
             //addGrid(gbl, gbc, btn4, 0, 1, 2, 1, 1, 2);
             addGrid(gbl, gbc, btn1,   0, 0, 1, 1, 1, 1);
-            addGrid(gbl, gbc, btn2,   0, 1, 1, 1, 1, 1);
+            addGrid(gbl, gbc, btn2,   0, 1, 1, 1, 1, 0);
             addGrid(gbl, gbc, btn3,   0, 2, 1, 1, 1, 1);
             addGrid(gbl, gbc, btn4,   0, 3, 1, 1, 1, 1);
             //addGrid(gbl, gbc, btn5, 2, 1, 1, 2, 0, 1);
@@ -40,6 +45,7 @@ public class GridBagLayoutSample extends JFrame
             //addGrid(gbl, gbc, btn7, 1, 2, 1, 1, 1, 1);
            
             pack();
+            this.setSize(200, 300);
             setVisible(true);
       }
      
